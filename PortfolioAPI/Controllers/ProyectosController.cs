@@ -20,14 +20,14 @@ namespace PortfolioAPI.Controllers
 
         // GET: api/Proyectos (Obtener todos los proyectos)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos()
+        public async Task<ActionResult<IEnumerable<Proyectos>>> GetProyectos()
         {
             return await _context.Proyectos.ToListAsync();
         }
 
         
         [HttpGet("{id}")]
-        public async Task<ActionResult<Proyecto>> GetProyecto(int id)
+        public async Task<ActionResult<Proyectos>> GetProyecto(int id)
         {
             var proyecto = await _context.Proyectos.FindAsync(id);
 
@@ -42,7 +42,7 @@ namespace PortfolioAPI.Controllers
         // POST: api/Proyectos (Guardar un nuevo proyecto)
         [ApiKey]
         [HttpPost]
-        public async Task<ActionResult<Proyecto>> PostProyecto(Proyecto proyecto)
+        public async Task<ActionResult<Proyectos>> PostProyecto(Proyectos proyecto)
         {
             _context.Proyectos.Add(proyecto);
             await _context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace PortfolioAPI.Controllers
 
         // PUT: api/Proyectos/1 (Actualizar un proyecto)
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProyecto(int id, Proyecto proyecto)
+        public async Task<IActionResult> PutProyecto(int id, Proyectos proyecto)
         {
             if (id != proyecto.Id) return BadRequest();
 

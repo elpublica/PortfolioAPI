@@ -36,4 +36,4 @@ namespace PortfolioAPI.Filters
             await next();
         }
     }
-} // <--- NO OLVIDES CERRAR LA LLAVE AQUÍ
+}
