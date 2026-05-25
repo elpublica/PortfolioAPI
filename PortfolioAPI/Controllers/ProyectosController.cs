@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PortfolioAPI.Data;
 using PortfolioAPI.Models;
+using PortfolioAPI.Filters;
 
 namespace PortfolioAPI.Controllers
 {
@@ -24,7 +25,7 @@ namespace PortfolioAPI.Controllers
             return await _context.Proyectos.ToListAsync();
         }
 
-        // POST: api/Proyectos (Guardar un nuevo proyecto)
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Proyecto>> GetProyecto(int id)
         {
@@ -38,6 +39,8 @@ namespace PortfolioAPI.Controllers
             return proyecto;
         }
 
+        // POST: api/Proyectos (Guardar un nuevo proyecto)
+        [ApiKey]
         [HttpPost]
         public async Task<ActionResult<Proyecto>> PostProyecto(Proyecto proyecto)
         {
