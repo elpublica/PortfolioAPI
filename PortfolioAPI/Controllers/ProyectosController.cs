@@ -6,19 +6,19 @@ using PortfolioAPI.Filters;
 
 namespace PortfolioAPI.Controllers
 {
-    [Route("api/[controller]")] // La ruta será: api/proyectos
+    [Route("api/[controller]")] // The route will be: api/proyectos
     [ApiController]
     public class ProyectosController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        // Constructor: Le pedimos a .NET que nos pase la conexión a la DB
+        // Constructor: We ask .NET to pass us the connection to the DB
         public ProyectosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Proyectos (Obtener todos los proyectos)
+        // GET: api/Proyectos (Get all proyects)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Proyectos>>> GetProyectos()
         {
@@ -39,7 +39,7 @@ namespace PortfolioAPI.Controllers
             return proyecto;
         }
 
-        // POST: api/Proyectos (Guardar un nuevo proyecto)
+        // POST: api/Proyectos (Save a new proyect)
         [ApiKey]
         [HttpPost]
         public async Task<ActionResult<Proyectos>> PostProyecto(Proyectos proyecto)
@@ -50,7 +50,8 @@ namespace PortfolioAPI.Controllers
             return CreatedAtAction(nameof(GetProyecto), new { id = proyecto.Id }, proyecto);
         }
 
-        // PUT: api/Proyectos/1 (Actualizar un proyecto)
+        // PUT: api/Proyectos/1 (Update one proyect)
+        [ApiKey]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProyecto(int id, Proyectos proyecto)
         {
@@ -71,7 +72,8 @@ namespace PortfolioAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Proyectos/1 (Eliminar un proyecto)
+        // DELETE: api/Proyectos/1 (Delete one proyect)
+        [ApiKey]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProyecto(int id)
         {

@@ -18,11 +18,11 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1"
     });
 
-    // Definimos cómo se llama la seguridad
+    // We define what security is called
     options.AddSecurityDefinition("ApiKey", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Description = "Ingresa tu clave secreta para habilitar el POST. Formato: Solo la clave",
-        Name = "X-Api-Key", // El nombre del header que definimos en el filtro
+        Name = "X-Api-Key", // The name of header that define in the filter
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
         Scheme = "ApiKeyScheme"
@@ -45,7 +45,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Use CORS for politics 
+// Use CORS for policy 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FreePolicy", app =>
@@ -58,9 +58,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Enable the politics
-app.UseCors("FreePolicy");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -69,6 +66,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Enable the policy
+app.UseCors("FreePolicy");
 
 app.UseAuthorization();
 
